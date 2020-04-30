@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "outDir": "dist",
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "rootDir": "src",
+    "target": "ES6"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

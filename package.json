@@ -1,0 +1,32 @@
+{
+  "name": "mongodb-mock-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "compile": "",
+    "start": "",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nightowl-Developers/mongodb-mock-example.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nightowl-Developers/mongodb-mock-example/issues"
+  },
+  "homepage": "https://github.com/Nightowl-Developers/mongodb-mock-example#readme",
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.13.4",
+    "jest": "^25.5.2",
+    "ts-jest": "^25.4.0",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "mongodb": "^3.5.6"
+  }
+}
