@@ -1,24 +1,21 @@
-import buildMongoMock from './mockodb';
+import { MongoClient } from 'mongodb';
 import { createConnection } from './index';
 
-describe('testing mocko', () => {
-    buildMongoMock({
-        user: {
-            documents: [
-                {
-                    first: 'first',
-                    last: 'last',
-                },
-                {
-                    first: 'first',
-                    last: 'last',
-                },
-            ]
-        },
+describe('createConnection', () => {
+    it('calls new MongoClient()', () => {
+        createConnection(process.env.MONGO_URL);
+    });
+
+    it('calls client.connect()', () => {
+        const connect = jest.spyOn(MongoClient.prototype, 'connect');
+
+        createConnection(process.env.MONGO_URL);
+
+        expect(connect).toHaveBeenCalledTimes(1);
     });
 
     it('connects to db', () => {
-        const connection = createConnection('');
+        const connection = createConnection(process.env.MONGO_URL);
 
         expect(connection).not.toBe(undefined);
     });

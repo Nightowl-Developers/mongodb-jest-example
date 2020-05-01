@@ -5,7 +5,7 @@ import { MongoClient } from 'mongodb';
  *
  * @param url
  */
-export const createConnection = async (url: string) => {
+export const createConnection = async (url: string): Promise<any> => {
     const client = new MongoClient(url);
 
     await client.connect();
