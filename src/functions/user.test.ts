@@ -97,16 +97,18 @@ describe('getUserById()', () => {
     });
 
     describe('deleteUser()', () => {
-        connection
-            .then((mongoClient: MongoClient) => {
-                const userCollection = mongoClient.db().collection('user');
+        it('deletes a user', () => {
+            connection
+                .then((mongoClient: MongoClient) => {
+                    const userCollection = mongoClient.db().collection('user');
 
-                const deleteUserPromise = deleteUser(userCollection, userResult._id);
+                    const deleteUserPromise = deleteUser(userCollection, userResult._id);
 
-                deleteUserPromise
-                    .then((result: any) => {
-                        //
-                    });
-            });
+                    deleteUserPromise
+                        .then((result: any) => {
+                            //
+                        });
+                });
+        })
     });
 });
