@@ -1,6 +1,6 @@
-import { MongoClient, MongoError } from 'mongodb';
+import { MongoClient, ObjectID } from 'mongodb';
 import { createConnection } from '../index';
-import { createUser, getUserById } from './user';
+import {createUser, getUserById, updateUser, deleteUser } from './user';
 
 describe('getUserById()', () => {
     let connection: Promise<any>;
@@ -17,8 +17,14 @@ describe('getUserById()', () => {
         email: 'email@email.com',
     };
 
+    const updatedUserData: UserData = {
+        first: 'updated first name',
+        last: 'updated last name',
+        email: 'updated.email@email.com',
+    };
+
     interface UserResult {
-        _id?: string;
+        _id?: ObjectID;
         first?: string;
         last?: string;
         email?: string;
@@ -67,5 +73,40 @@ describe('getUserById()', () => {
                         });
                 });
         });
+    });
+
+    describe('updateUser()', () => {
+        it('update a user', () => {
+            connection
+                .then((mongoClient: MongoClient) => {
+                    const userCollection = mongoClient.db().collection('user');
+
+                    const updateUserPromise = updateUser(userCollection, userResult._id, updatedUserData);
+
+                    updateUserPromise
+                        .then((result: any) => {
+                            userResult = result;
+
+                            expect(result).toHaveProperty(userResult._id);
+                            expect(result).toHaveProperty(userResult.first);
+                            expect(result).toHaveProperty(userResult.last);
+                            expect(result).toHaveProperty(userResult.email);
+                        });
+                });
+        });
+    });
+
+    describe('deleteUser()', () => {
+        connection
+            .then((mongoClient: MongoClient) => {
+                const userCollection = mongoClient.db().collection('user');
+
+                const deleteUserPromise = deleteUser(userCollection, userResult._id);
+
+                deleteUserPromise
+                    .then((result: any) => {
+                        //
+                    });
+            });
     });
 });

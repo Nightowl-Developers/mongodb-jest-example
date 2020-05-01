@@ -16,10 +16,10 @@ export const createUser = async (db: Db, user: object): Promise<any> => {
     });
 };
 
-export const updateUser = (db: Db, id: string, user: object): Promise<any> => {
-    return db.collection('user').update(id, user);
+export const updateUser = async (db: Db, id: string, user: object): Promise<any> => {
+    return await db.collection('user').updateOneById(id, user);
 };
 
-export const deleteUser = (db: Db, id: string): Promise<any> => {
-    return db.collection('user').delete(id);
+export const deleteUser = async (db: Db, id: string): Promise<any> => {
+    return await db.collection('user').deleteOne(id);
 };
